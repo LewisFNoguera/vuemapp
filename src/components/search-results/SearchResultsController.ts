@@ -4,16 +4,34 @@ import { defineComponent, ref, watch } from "vue";
 
 export default defineComponent({
   name: "SearchResultsController",
-  setup() {
-    const { places, isLoadingPlaces } = usePlacesStore();
-    const { map, setPlaceMarkers } = useMapStore();
+  props: {
+    searchTerm: {
+      type: String,
+    },
+  },
+  setup(props) {
+    const { places, isLoadingPlaces, userLocation } = usePlacesStore();
+    const { map, setPlaceMarkers, getRouteBetweenPoints } = useMapStore();
     const activePlace = ref("");
+    const term = ref<string>("");
+
     watch(places, (newPlaces) => {
       activePlace.value = "";
       setPlaceMarkers(newPlaces);
     });
+    watch(
+      () => props.searchTerm,
+      (newVal) => {
+        if (!newVal) {
+          term.value = "";
+        } else {
+          term.value = newVal;
+        }
+      }
+    );
     return {
       places,
+      term,
       isLoadingPlaces,
       activePlace,
       onPlaceClicked: (place: Feature) => {
@@ -24,8 +42,18 @@ export default defineComponent({
           center: [lng, lat],
           zoom: 12.5,
           bearing: 130,
-          pitch: 75, // Cambiar después para ajustar la elevación
+          pitch: 0, // Cambiar después para ajustar la elevación
         });
+      },
+      getRoute: (place: Feature) => {
+        if (!userLocation.value) return;
+        activePlace.value = place.id;
+        const [lng, lat] = place.center;
+        const [lngS, latS] = userLocation.value;
+        const start: [number, number] = [lngS, latS];
+        const end: [number, number] = [lng, lat];
+
+        getRouteBetweenPoints(start, end);
       },
     };
   },

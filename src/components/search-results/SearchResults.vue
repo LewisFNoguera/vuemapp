@@ -32,7 +32,7 @@
       v-for="place in places"
       :key="place.id"
       class="py-3 px-6 cursor-pointer"
-      :class="activePlace === place.id ? 'bg-violet-700' : 'hover:bg-stone-50'"
+      :class="activePlace === place.id ? 'bg-indigo-600' : 'hover:bg-stone-50'"
       @click="onPlaceClicked(place)"
     >
       <div
@@ -52,10 +52,44 @@
           type="button"
           class="rounded-full bg-indigo-50 px-2 py-1 text-xs font-semibold text-indigo-600 shadow-sm hover:bg-indigo-100"
           :class="activePlace === place.id ? 'bg-white' : 'bg-indigo-600'"
+          @click.self="getRoute(place)"
         >
           ¿Cómo llegar?
         </button>
       </div>
     </li>
   </ul>
+
+  <!-- Empty state, show/hide based on command palette state. -->
+  <div
+    v-else-if="term.length > 0 && places.length === 0"
+    class="px-4 py-14 text-center sm:px-14"
+  >
+    <svg
+      class="mx-auto h-6 w-6 text-gray-400"
+      width="24px"
+      height="24px"
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M9 17C9.85038 16.3697 10.8846 16 12 16C13.1154 16 14.1496 16.3697 15 17"
+        stroke="currentColor"
+        stroke-width="1.5"
+        stroke-linecap="round"
+      />
+      <ellipse cx="15" cy="10.5" rx="1" ry="1.5" fill="currentColor" />
+      <ellipse cx="9" cy="10.5" rx="1" ry="1.5" fill="currentColor" />
+      <path
+        d="M7 3.33782C8.47087 2.48697 10.1786 2 12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 10.1786 2.48697 8.47087 3.33782 7"
+        stroke="currentColor"
+        stroke-width="1.5"
+        stroke-linecap="round"
+      />
+    </svg>
+    <p class="mt-4 text-sm text-gray-900">
+      We're sorry. We were not able to find a match.
+    </p>
+  </div>
 </template>

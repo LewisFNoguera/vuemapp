@@ -7,8 +7,7 @@
   >
     <div class="text-center">
       <Vue3Lottie :animationData="astroJSON" :height="600" :width="600" />
-      <h3 class="text-2xl">Espere por favor</h3>
-      <small>Preparando mapa...</small>
+      <small>Rendering map...</small>
     </div>
   </div>
 

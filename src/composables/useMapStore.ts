@@ -1,5 +1,6 @@
 import { Feature } from "@/interfaces/places";
 import { StateInterface } from "@/store";
+import { LngLat } from "@/store/map/map-actions";
 import { computed } from "vue";
 import { useStore } from "vuex";
 
@@ -13,5 +14,7 @@ export const useMapStore = () => {
     isMapReady: computed(() => store.getters["map/isMapReady"]),
     setPlaceMarkers: (places: Feature[]) =>
       store.commit("map/setPlaceMarkers", places),
+    getRouteBetweenPoints: (start: LngLat, end: LngLat) =>
+      store.dispatch("map/getRouteBetweenPoints", { start, end }),
   };
 };
