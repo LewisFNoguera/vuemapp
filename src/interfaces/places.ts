@@ -1,46 +1,54 @@
 export interface PlaceResponse {
-  suggestions: Suggestion[];
+  type: string;
+  query: string[];
+  features: Feature[];
   attribution: string;
 }
 
-export interface Suggestion {
-  name: string;
-  mapbox_id: string;
-  feature_type: string;
-  place_formatted: string;
-  context: Context;
-  language: string;
-  maki: string;
-  metadata: Metadata;
-  distance: number;
+export interface Feature {
+  id: string;
+  type: string;
+  place_type: string[];
+  relevance: number;
+  properties: Properties;
+  text_es: string;
+  language_es?: Language;
+  place_name_es: string;
+  text: string;
+  language?: Language;
+  place_name: string;
+  bbox?: number[];
+  center: number[];
+  geometry: Geometry;
+  context?: Context[];
 }
 
 export interface Context {
-  country: Country;
-  region: Region;
-  postcode?: Place;
-  place?: Place;
-  street?: Place;
-}
-
-export interface Country {
   id: string;
-  name: string;
-  country_code: string;
-  country_code_alpha_3: string;
+  mapbox_id: string;
+  text_es: string;
+  text: string;
+  wikidata?: string;
+  language_es?: Language;
+  language?: Language;
+  short_code?: string;
 }
 
-export interface Place {
-  id: string;
-  name: string;
+export enum Language {
+  Es = "es",
 }
 
-export interface Region {
-  id: string;
-  name: string;
-  region_code: string;
-  region_code_full: string;
+export interface Geometry {
+  type: string;
+  coordinates: number[];
 }
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
-export interface Metadata {}
+export interface Properties {
+  mapbox_id?: string;
+  wikidata?: string;
+  short_code?: string;
+  foursquare?: string;
+  landmark?: boolean;
+  category?: string;
+  address?: string;
+}

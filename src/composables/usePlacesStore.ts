@@ -1,3 +1,4 @@
+import { Feature } from "@/interfaces/places";
 import { StateInterface } from "@/store";
 import { onMounted, computed } from "vue";
 import { useStore } from "vuex";
@@ -12,6 +13,8 @@ export const usePlacesStore = () => {
   return {
     isLoading: computed(() => store.state.places.isLoading),
     userLocation: computed(() => store.state.places.userLocation),
+    places: computed(() => store.state.places.places),
+    isLoadingPlaces: computed(() => store.state.places.isLoadingPlaces),
     isGeolocationReady: computed<boolean>(
       () => store.getters["places/isGeolocationReady"]
     ),
