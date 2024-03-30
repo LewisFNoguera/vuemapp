@@ -1,4 +1,7 @@
-# vuemapp
+# Vuemapp
+
+
+Demo: https://vuemapp.netlify.app/#/
 
 ## Project setup
 ```
