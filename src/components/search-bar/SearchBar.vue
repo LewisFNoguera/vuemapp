@@ -3,11 +3,7 @@
 <template>
   <div class="fixed left-10 top-5 w-full">
     <div class="relative" role="dialog" aria-modal="true">
-      <!-- <div
-        class="fixed inset-0 bg-gray-500 bg-opacity-25 transition-opacity"
-      ></div> -->
-
-      <div class="fixed inset-0 z-10 w-screen overflow-y-auto p-4 sm:p-6">
+      <div class="inset-0 z-10 w-screen overflow-y-auto p-4 sm:p-6">
         <div
           class="max-w-xl transform rounded-xl bg-white p-2 shadow-2xl ring-1 ring-black ring-opacity-5 transition-all"
         >
