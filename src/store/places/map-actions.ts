@@ -13,7 +13,6 @@ const actions: ActionTree<PlacesState, StateInterface> = {
           lat: coords.latitude,
         }),
       (e) => {
-        console.log(e);
         throw new Error("No gelocalizado");
       }
     );
@@ -22,7 +21,6 @@ const actions: ActionTree<PlacesState, StateInterface> = {
     { commit, state },
     query: string
   ): Promise<Feature[]> {
-    console.log("query", query);
     if (query.length === 0) {
       commit("setPlaces", []);
       return [];
