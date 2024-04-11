@@ -27,9 +27,9 @@ export default defineComponent({
       const currentLocationPopup = new Mapboxgl.Popup({
         offset: [0, -20],
       }).setLngLat(userLocation.value).setHTML(`
-        <h2> Hola mundo </h2>`);
+        <h2> I'm Here 👋🏼! </h2>`);
 
-      const currentLocationMarker = new Mapboxgl.Marker()
+      new Mapboxgl.Marker()
         .setLngLat(userLocation.value)
         .setPopup(currentLocationPopup)
         .addTo(map);
@@ -76,7 +76,7 @@ export default defineComponent({
           center.lng -= distancePerSecond;
           // Smoothly animate the map over one second.
           // When this animation is complete, it calls a 'moveend' event.
-          map.easeTo({ center, duration: 1000, easing: (n: any) => n });
+          map.easeTo({ center, duration: 1000, easing: (n: unknown) => n });
         }
       }
 

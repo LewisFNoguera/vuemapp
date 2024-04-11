@@ -1,4 +1,3 @@
-import { Feature } from "@/interfaces/places";
 import { StateInterface } from "@/store";
 import { onMounted, computed } from "vue";
 import { useStore } from "vuex";

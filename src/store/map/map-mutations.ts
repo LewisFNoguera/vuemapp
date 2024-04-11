@@ -32,7 +32,7 @@ const mutation: MutationTree<MapState> = {
       const popup = new Mapboxgl.Popup({
         offset: [0, -20],
       }).setLngLat(position).setHTML(`
-        <h2> Hola mundo </h2>`);
+        <h2>${place.place_name}</h2>`);
 
       const marker = new Mapboxgl.Marker()
         .setLngLat(position)
@@ -54,7 +54,6 @@ const mutation: MutationTree<MapState> = {
     if (!coords) return;
 
     const start = coords[0];
-    const end = coords[coords.length - 1];
 
     // Bounds: Puntos de trazado
     const bounds = new Mapboxgl.LngLatBounds(

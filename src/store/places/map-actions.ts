@@ -12,7 +12,7 @@ const actions: ActionTree<PlacesState, StateInterface> = {
           lng: coords.longitude,
           lat: coords.latitude,
         }),
-      (e) => {
+      () => {
         throw new Error("No gelocalizado");
       }
     );
